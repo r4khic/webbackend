@@ -80,7 +80,7 @@ app.post('/', (req, res) => {
 mongoose
     .connect(process.env.MONGODB_URI, {dbName: "shop"}, {useNewUrlParser: true})
     .then(result => {
-        app.listen(process.env.PORT);
+        app.listen(process.env.PORT || 3000);
         console.log("Web Server is Running");
     })
     .catch(err => {
