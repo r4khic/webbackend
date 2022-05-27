@@ -1,4 +1,4 @@
-Project for course WEB Technologies 2 (Back End). 
+#Project for course WEB Technologies 2 (Back End). 
 
 Tech-stack:
 Backend - node.js; express; mongodb
