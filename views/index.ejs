@@ -1,0 +1,73 @@
+<%-include("includes/head.ejs")%>
+
+<!-- SECTION: CONTENT -->
+<div class="container mb-2 mt-4">
+  <h4 class="text-center mb-4">ONLINE SHOP BY PEAKY BLINDERS</h4>
+  <hr />
+  <!-- SECTION : CARD -->
+  <div class="row text-center">
+    <% if (prods.length > 0) { %> <% for (let product of prods) { %>
+    <div class="col-md-4 text-center ">
+      <div
+        class="card shadow mb-4 mt-2 mr-4 ml-4 mx-auto"
+        style="width: 17rem;"
+      >
+        <h5 class="card-title text-center mt-2 mb-2"><%-product.title%></h5>
+        <img
+          class="card-img-top"
+          src="<%-product.imageUrl%>"
+          alt="Card image cap"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">$ <%-product.price%></h5>
+          <h6 class="text-muted"><%-product.stock%> Stock</h6>
+          <p class="card-text">
+            <%-product.description%>
+          </p>
+
+          <% if (isAuthenticated) { %>
+          <form id="myForm" method="POST" action="/delete">
+            <a
+              href="/edit/<%= product._id %>?edit=true"
+              class="btn btn-warning mr-3"
+              >Update</a
+            >
+            <input type="hidden" value="<%= product._id %>" name="productId" />
+            <button
+              class="btn btn-danger"
+              onclick="return confirm('Are You Sure?');"
+            >
+              Delete
+            </button>
+          </form>
+          <%}%> <% if (!isAuthenticated) { %>
+          <a href="/login" style="text-decoration: none;">
+            <button class="btn btn-dark">
+              Detail
+            </button>
+          </a>
+          <%}%>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <!-- END CARD -->
+    <% } else { %>
+    <div class="col mx-auto">
+      <h4 class="text-center mt-2">No Product</h4>
+    </div>
+    <% } %>
+
+
+    <!-- SECTION :Pagination -->
+    <div class="col-sm-12 mt-4">
+      <%- include('./includes/pagination.ejs', 
+      {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) 
+      %>
+    </div>
+
+  </div>
+</div>
+<!--  -->
+
+<%-include("includes/end.ejs")%>

@@ -1,0 +1,59 @@
+<%-include("includes/head.ejs")%>
+
+<div class="container" class="mt-4 ml-2 mr-2">
+  <br />
+  <h4 class="text-center mt-4 mb-4">REGISTER</h4>
+  <hr />
+  <div class="row">
+    <div class="col-sm-5 mx-auto">
+     <% if (errorMessage) { %>
+           <div class="alert alert-danger text-center font-weight-bold" role="alert">
+              <%= errorMessage %>
+           </div>
+      <% } %>
+
+      <form action="/signup" method="POST" novalidate>
+        <div class="form-group mt-4">
+          <input
+            type="email"
+            class="<%= validationErrors.find(e =>e.param === 'email') ? 'form-control form-control-lg border border-danger' : 'form-control form-control-lg' %>"
+            placeholder="Email"
+            name="email"
+            id="email"
+            value="<%=oldInput.email%>"
+             
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="<%= validationErrors.find(e =>e.param === 'password') ? 'form-control form-control-lg border border-danger' : 'form-control form-control-lg' %>"
+            placeholder="Password"
+            name="password"
+            id="password"
+            value="<%=oldInput.password%>"
+            
+          />
+        </div>
+         <div class="form-group">
+          <input
+            type="password"
+            class="<%= validationErrors.find(e =>e.param === 'confirmPassword') ? 'form-control form-control-lg border border-danger' : 'form-control form-control-lg' %>"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            id="confirmPassword"
+            value="<%=oldInput.confirmPassword%>"
+          />
+        </div>
+        <br />
+        <div class="form-group text-center mx-auto">
+          <button type="submit" class="btn btn-lg btn-outline-primary mt-2">
+            REGISTER
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%-include("includes/end.ejs")%>
