@@ -11,3 +11,5 @@ add link to db and port
 
 Usage
 npm run start
+
+DEMO:https://shopwebbackend.herokuapp.com
